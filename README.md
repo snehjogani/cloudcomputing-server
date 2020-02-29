@@ -1,3 +1,3 @@
-# cc_project_back_end
+# Cloud Computing Project
+## Secured Light-weight Tourism Application for Canada
 
-Secure Light-weight Tourism Application Backend
