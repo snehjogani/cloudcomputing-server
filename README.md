@@ -35,15 +35,13 @@ If you need to update `npm`, just run the following command.
 
 ###
 
-## Install
+## Setting up the project
 
     $ git clone https://git.cs.dal.ca/jogani/cc_project_back_end.git
     $ cd cc_project_back_end
     $ npm install
 
-## Setting up the project
-
-On the command line, in your project's root folder, create a .env file and place the key value pair in the this new file
+In the project's root folder, create a .env file and place the below mentioned key-value pairs in the this new file.
 
     PORT=3000
        
