@@ -1,10 +1,11 @@
-import 'dotenv/config';
-import cors from 'cors';
-import express from 'express';
+import 'dotenv/config'
+import cors from 'cors'
+import express from 'express'
+import con from './dbseed'
 
-const app = express();
+const app = express()
 
-app.use(cors());
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
