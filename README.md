@@ -41,11 +41,6 @@ If you need to update `npm`, just run the following command.
     $ cd cc_project_back_end
     $ npm install
 
-In the project's root folder, create a .env file and place the below mentioned key-value pairs in the this new file.
-
-    PORT=3000
-       
-
 ## Running the project
 
     $ npm start
