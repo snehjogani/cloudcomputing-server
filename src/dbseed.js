@@ -12,11 +12,15 @@ const con = mysql.createConnection(CONFIG);
 con.connect(function (err) {
     if (err) throw err;
     console.log("Database Connected!");
-    // con.query('CREATE DATABASE IF NOT EXISTS main;');
-    // con.query('USE main;');
-    // con.query('CREATE TABLE IF NOT EXISTS users(id int NOT NULL AUTO_INCREMENT, username varchar(30), email varchar(255), age int, PRIMARY KEY(id));', function(error, result, fields) {
-    //     console.log(fields);
-    // });
+    // mysql table cration script
+    con.query('CREATE DATABASE IF NOT EXISTS ccgroup7;');
+    con.query('USE ccgroup7;');
+    con.query('create table if not exists users(id int NOT NULL AUTO_INCREMENT, firstname varchar(30), lastname varchar(30), email varchar(255), password varchar(30), age int, PRIMARY KEY(id))', function(error, result, fields) {
+        console.log(result);
+    });
+    con.query('create table if not exists tickets(id int NOT NULL AUTO_INCREMENT, userId int, origin varchar(255), destination varchar(255), startDate datetime, endDate datetime, fare int, noOfSeats int, class varchar(30), primary key(id), constraint fk_users foreign key(userId) references users(id) on delete cascade);', function(error, result, fields) {
+        console.log(result);
+    });
     con.end();
 });
 
