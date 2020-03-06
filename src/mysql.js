@@ -14,6 +14,7 @@ const CREATE_USER_TABLE_QUERY = `
         lastname varchar(30), 
         email varchar(255), 
         password varchar(30), 
+        gender varchar(30),
         age int, 
         PRIMARY KEY(id)
     );
@@ -33,7 +34,7 @@ const CREATE_TICKETS_TABLE_QUERY = `
         constraint fk_users 
             foreign key(userId) 
             references users(id) 
-            on delete cascade
+            on delete set null
     );
 `;
 
