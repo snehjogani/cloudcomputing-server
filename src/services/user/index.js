@@ -1,9 +1,13 @@
 module.exports = (app, con) => {
-  app.post("/users", (req, res) => {
-    const {
-      body: { firstname, lastname, email, password, age, gender } = {}
-    } = req;
-    if (firstname && lastname && email && password && age && gender) {
+  app.post("/users", (req, res) => {    
+    const firstname = req.body["firstName"];
+    const lastname = req.body["lastName"];
+    const email = req.body["email"];
+    const password = req.body["password"];
+    const age = req.body["age"];
+    const gender = req.body["gender"];
+
+    if (firstname && lastname && email && gender) {
       console.log("Register Request received");
       con.connect(err => {
         con.query(
