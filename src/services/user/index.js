@@ -62,10 +62,8 @@ module.exports = (app, con) => {
               '${noOfSeats}',  '${busNo}',  '${busStop}'  )`,
           (err, result, fields) => {
             if (err) res.send(err);
-            if (result) res.send({
-              email, origin, destination, travelDate, bookingDate, fromTime,
-              toTime, fare, noOfSeats, busNo, busStop
-            });
+            console.log(result);
+            if (result) res.send(result);
             if (fields) console.log(fields);
           }
         );
