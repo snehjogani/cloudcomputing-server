@@ -1,4 +1,6 @@
 module.exports = (app, con) => {
+
+  // POST api to save users
   app.post("/users", (req, res) => {
     const firstname = req.body["firstName"];
     const lastname = req.body["lastName"];
@@ -15,8 +17,7 @@ module.exports = (app, con) => {
             VALUES ('${firstname}', '${lastname}', '${email}', '${password}', '${age}', '${gender}')`,
           (err, result, fields) => {
             if (err) res.send(err);
-            if (result) res.send({ firstname, lastname, email, age, gender });
-            if (fields) console.log(fields);
+            if (result) res.send(result);            
           }
         );
       });
@@ -25,6 +26,7 @@ module.exports = (app, con) => {
     }
   });
 
+  // GET api to get users
   app.get("/users", (req, res) => {
     con.connect(err => {
       con.query(
@@ -37,6 +39,7 @@ module.exports = (app, con) => {
     });
   });
 
+  // POST api to save ticket details
   app.post("/ticket", (req, res) => {
     const email = req.body["email"];
     const origin = req.body["origin"];
@@ -61,10 +64,8 @@ module.exports = (app, con) => {
             current_timestamp(), '${fromTime}',  '${toTime}',  '${fare}', 
               '${noOfSeats}',  '${busNo}',  '${busStop}'  )`,
           (err, result, fields) => {
-            if (err) res.send(err);
-            console.log(result);
-            if (result) res.send(result);
-            if (fields) console.log(fields);
+            if (err) res.send(err);            
+            if (result) res.send(result);            
           }
         );
       });
@@ -72,4 +73,21 @@ module.exports = (app, con) => {
       console.log("Missing a parameter");
     }
   });
+
+  // GET api to get ticket details of current logged in user
+  app.get("/tickets/user/:email", (req, res) => {  
+    const email = req.params.email;      
+    console.log("Ticket history request received");
+    con.connect(err => {
+      con.query(
+        `SELECT * FROM ccgroup7.tickets 
+        WHERE email= '${email}';`,
+        (err, result, fields) => {
+          if (err) res.send(err);
+          if (result) res.send(result);
+        }
+      );
+    });
+  });
+
 };
