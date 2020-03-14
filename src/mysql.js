@@ -1,5 +1,5 @@
 import "dotenv/config";
-const mysql = require("mysql");
+import mysql from "mysql";
 
 const CONNECTION_CONFIG = {
   host: process.env.MYSQL_ENDPOINT,
