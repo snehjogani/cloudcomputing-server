@@ -21,27 +21,26 @@ const CREATE_USER_TABLE_QUERY = `
 `;
 const CREATE_TICKETS_TABLE_QUERY = `
     create table if not exists tickets(
-        id int NOT NULL AUTO_INCREMENT, 
-        userId int, 
+        ticketId int NOT NULL AUTO_INCREMENT,         
+        email varchar(255), 
         origin varchar(255), 
         destination varchar(255), 
-        startDate datetime, 
-        endDate datetime, 
+        travelDate datetime, 
+        bookingDate datetime, 
+        fromTime varchar(10),
+        toTime varchar(10),
         fare int, 
         noOfSeats int, 
-        class varchar(30), 
-        primary key(id), 
-        constraint fk_users 
-            foreign key(userId) 
-            references users(id) 
-            on delete set null
+        busNo varchar(10),
+        busStop varchar(255),        
+        primary key(ticketId)        
     );
 `;
 
 const con = mysql.createConnection(CONNECTION_CONFIG);
 
 const callback = (error, result, fields) => {
-  //   console.log(result);
+    // console.log(result);
 };
 
 con.connect(function(err) {
@@ -51,7 +50,7 @@ con.connect(function(err) {
   con.query("USE ccgroup7;");
   // mysql table cration script
   con.query(CREATE_USER_TABLE_QUERY, callback);
-  con.query(CREATE_TICKETS_TABLE_QUERY, callback);
+  con.query(CREATE_TICKETS_TABLE_QUERY, callback);  
   //   con.end();
 });
 
