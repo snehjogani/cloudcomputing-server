@@ -41,7 +41,7 @@ module.exports = (app, con) => {
 
   // POST api to save ticket details
   app.post("/ticket", (req, res) => {
-    const email = req.body["email"];
+	const email = req.body["email"];
     const origin = req.body["origin"];
     const destination = req.body["destination"];
     const travelDate = req.body["travelDate"];
