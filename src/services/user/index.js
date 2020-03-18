@@ -10,7 +10,7 @@ module.exports = (app, con) => {
             con.connect(err => {
                 con.query(
                     `INSERT INTO ccgroup7.users (firstname, lastname, email, password, age, gender)
-            VALUES ('${firstname}', '${lastname}', '${email}', '${password}', '${age}', '${gender}')`,
+            VALUES ('${firstName}', '${lastName}', '${email}', '${password}', '${age}', '${gender}')`,
                     (err, result, fields) => {
                         if (err) res.send(err);
                         if (result) res.send(result);
