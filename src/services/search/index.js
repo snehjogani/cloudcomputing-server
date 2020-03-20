@@ -23,4 +23,21 @@ module.exports = (app, con) => {
             );
         });
     });
+
+    // GET api to get top searched places
+    app.get("/topsearchedplaces",(req,res) =>{
+        console.log("Number of top searched places received to create");
+        con.connect(err => {
+          con.query(
+            `select numberOfHits as count, name from locations 
+                        order by numberOfHits desc
+                        limit 5;`,
+            (err, result, fields) => {
+              if (err) res.send(err);
+              if (result) res.send(result);
+            }
+          );
+        });
+      });
+    
 };
