@@ -34,4 +34,19 @@ module.exports = (app, con) => {
             );
         });
     });
+
+    // GET api to get user ID by email
+    app.get("/users/:email", (req, res) => {        
+        const { params: { email } = {} } = req;
+        console.log(email);
+        con.connect(err => {
+            con.query(
+                `select id from ccgroup7.users where email='${email}';`,
+                (err, result, fields) => {
+                    if (err) res.send(err);
+                    if (result) res.send(result);
+                }
+            );
+        });
+    });
 };

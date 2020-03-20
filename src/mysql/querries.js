@@ -57,7 +57,7 @@ module.exports = {
   -- -----------------------------------------------------
 
   CREATE TABLE IF NOT EXISTS \`ccgroup7\`.\`tickets\` (
-    \`id\` INT(11) NOT NULL,
+    \`id\` INT(11) NOT NULL AUTO_INCREMENT,
     \`userId\` INT NOT NULL,
     \`origin\` VARCHAR(255) NOT NULL,
     \`destination\` VARCHAR(255) NOT NULL,
