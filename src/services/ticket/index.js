@@ -83,4 +83,22 @@ module.exports = (app, con) => {
       );
     });
   });
+
+  // GET api to get number of bookings in past 7 days
+  app.get("/noOfBookings",(req,res) =>{
+    console.log("Number of bookings received");
+    con.connect(err => {
+      con.query(
+        `select destination,count(*) as count from tickets
+        where day(bookingDate)   between   (day(current_timestamp())-7)   and   (day(current_timestamp()))
+        group by destination;`,
+        (err, result, fields) => {
+          if (err) res.send(err);
+          if (result) res.send(result);
+        }
+      );
+    });
+  });
+
+
 };
