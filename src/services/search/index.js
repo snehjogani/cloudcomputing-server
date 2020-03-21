@@ -1,4 +1,4 @@
-module.exports = (app, con) => {   
+module.exports = (app, con) => {
 
     // GET api to get attraction details by keyword
     app.get("/search/:location", (req, res) => {
@@ -22,5 +22,28 @@ module.exports = (app, con) => {
                 }
             );
         });
+    });
+
+    // POST api to increase the number of hits
+    app.post("/location", (req, res) => {
+        const {
+            body: {
+                locationId
+            } = {}
+        } = req;
+        if (locationId) {
+            console.log("Number of hits increment Request received");
+            con.connect(err => {
+                con.query(
+                    `UPDATE ccgroup7.locations SET numberOfHits = numberOfHits+1 WHERE id = ${locationId};`,
+                    (err, result, fields) => {
+                        if (err) res.send(err);
+                        if (result) res.send(result);
+                    }
+                );
+            });
+        } else {
+            console.log("Missing a parameter");
+        }
     });
 };

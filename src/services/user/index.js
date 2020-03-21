@@ -13,7 +13,7 @@ module.exports = (app, con) => {
             VALUES ('${firstName}', '${lastName}', '${email}', '${password}', '${age}', '${gender}')`,
                     (err, result, fields) => {
                         if (err) res.send(err);
-                        if (result) res.send(result);
+                        if (result) res.send(result);                        
                     }
                 );
             });
@@ -36,9 +36,8 @@ module.exports = (app, con) => {
     });
 
     // GET api to get user ID by email
-    app.get("/users/:email", (req, res) => {        
+    app.get("/users/:email", (req, res) => {
         const { params: { email } = {} } = req;
-        console.log(email);
         con.connect(err => {
             con.query(
                 `select id from ccgroup7.users where email='${email}';`,

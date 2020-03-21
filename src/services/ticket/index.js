@@ -11,8 +11,7 @@ module.exports = (app, con) => {
         noOfSeats,
         busId
       } = {}
-    } = req;
-    console.log(req.body);
+    } = req;    
     if (
       userId &&
       origin &&
